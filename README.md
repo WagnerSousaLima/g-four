@@ -12,7 +12,7 @@ Material da Aula 4 do curso Informatica 5.0.
 
 A aula ensina criacao digital como prestacao de servico. O aluno cria um Kit Digital Express para um negocio local ou profissional autonomo, conectando briefing, site, identidade visual, post, documento/apresentacao e roteiro de video.
 
-O foco nao e apenas conhecer ferramentas. O foco e entender como transformar ferramentas como Lovable, ChatGPT/Gemini, Canva/Adobe Express e CapCut em uma entrega clara para pequenos negocios.
+O foco nao e apenas conhecer ferramentas. O foco e entender como transformar ferramentas como Lovable, ChatGPT/Gemini, GPT Images, Nano Banana, Canva/Adobe Express e Runway em uma entrega clara para pequenos negocios.
 
 ## Produto da aula
 

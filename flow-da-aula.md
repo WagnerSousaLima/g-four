@@ -29,71 +29,57 @@ briefing -> oferta -> site -> identidade -> post/documento -> video -> pitch de 
 - Gemini: https://gemini.google.com/
 - Adobe Express: https://www.adobe.com/express/
 - Canva: https://www.canva.com/
-- CapCut: https://www.capcut.com/
 - Google Sites: https://sites.google.com/
 - Gamma: https://gamma.app/
 - Perfil da Empresa Google - postagens: https://support.google.com/business/answer/7342169?hl=pt-BR
+- GPT Images: ferramenta de geração de imagem no ecossistema OpenAI.
+- Nano Banana: ferramenta de imagem/edição por IA usada para explorar variações visuais rápidas.
+- Runway: https://www.runwayml.com/
 
 ## Resultado esperado
 
 Ao final, cada aluno deve ter:
 
-- briefing de um negocio local;
-- promessa principal;
-- prompt de landing page para Lovable;
-- rascunho de site ou wireframe;
-- identidade visual minima;
-- post para rede social;
-- roteiro de video curto;
-- pitch de 45 segundos apresentando o kit como servico.
-
-## 19h00 - 19h08 | Abertura: criatividade como servico
-
-**Slide:** 1  
 **Objetivo:** mostrar a entrega e conectar com empreendedorismo.
 
-Fala sugerida:
+## 20h08 - 20h25 | Imagem, post e apresentacao
 
-> Hoje a aula e sobre criar para negocio. Uma pessoa pode saber usar Canva, CapCut ou IA, mas o que gera valor e transformar isso em solucao: uma pagina, um post, um video, uma proposta, um material que ajude alguem a vender, atender ou ser encontrado.
-
+> Hoje a aula e sobre criar para negocio. Uma pessoa pode saber usar Canva, GPT Images, Nano Banana ou IA, mas o que gera valor e transformar isso em solucao: uma pagina, um post, um video, uma proposta, um material que ajude alguem a vender, atender ou ser encontrado.
+Transforme a mesma mensagem em formatos diferentes, com uma imagem principal gerada por IA como ponto de atenção.
 Combinado:
 
 - o aluno pode escolher negocio real, ficticio ou familiar;
-- se nao tiver conta em alguma plataforma, entrega prompt, wireframe e roteiro;
-- a aula avalia criterio e processo, nao apenas publicacao final.
-
-## 19h08 - 19h18 | Conteudo solto x sistema de comunicacao
-
-**Slide:** 2  
 **Objetivo:** diferenciar arte isolada de campanha digital minima.
 
-Explique:
+Ferramentas possiveis:
 
-- post sozinho pode chamar atencao, mas nao resolve todo o caminho;
-- site/pagina explica melhor;
-- video aproxima e gera interesse;
-- documento ou apresentacao formaliza a oferta;
-- tudo precisa ter a mesma mensagem.
+- GPT Images;
+- Nano Banana;
 
 Pergunta para sala:
+Atividade rapida:
 
+- gerar uma imagem principal para o negocio escolhido;
+- escrever o prompt da imagem;
+- pedir uma revisao para ficar mais limpa, mais moderna e mais coerente com o publico.
 ```text
 Qual negocio local perto de voce precisaria aparecer melhor na internet?
-```
+## 20h25 - 20h38 | Imagem em movimento e video curto
 
 ## 19h18 - 19h30 | Briefing real
-
+**Objetivo:** criar roteiro antes da edicao e usar a imagem gerada como base visual.
 **Slide:** 3  
 **Objetivo:** ensinar diagnostico antes da ferramenta.
-
-Atividade:
-
-Cada aluno escolhe um caso:
-
-- marmitaria;
-- manicure;
+```text
+0-3s: dor ou desejo do cliente
+3-7s: imagem principal ou bastidor gerado
+7-10s: beneficio principal
+10-13s: prova rapida
+13-15s: chamada para WhatsApp, site ou direct
+```
 - barbearia;
 - loja de roupas;
+Escreva o seu:
 - reforco escolar;
 - assistencia de celular;
 - personal trainer;
@@ -103,6 +89,12 @@ Cada aluno escolhe um caso:
 
 Preencher:
 
+
+Se quiser transformar em video curto:
+
+- use a imagem gerada como thumbnail ou abertura;
+- monte a peça em Canva, Adobe Express ou Runway;
+- adicione legenda curta e CTA final.
 ```text
 Negocio:
 Cliente ideal:
@@ -266,11 +258,11 @@ Roteiro de 15 segundos:
 13-15s: chamada para WhatsApp, site ou direct
 ```
 
-Passo a passo no CapCut:
+Passo a passo no editor escolhido:
 
-1. Abrir https://www.capcut.com/.
+1. Abrir o editor escolhido, como Canva, Adobe Express ou Runway.
 2. Escolher formato vertical.
-3. Importar foto ou clipe.
+3. Importar a imagem principal criada com GPT Images ou Nano Banana.
 4. Adicionar texto curto.
 5. Inserir legenda.
 6. Exportar ou salvar roteiro.
@@ -279,6 +271,7 @@ Se nao houver midia:
 
 - criar storyboard com 5 cenas;
 - deixar texto de tela pronto;
+- criar a imagem de abertura ou capa com IA;
 - montar roteiro para gravar depois.
 
 ## 20h38 - 20h55 | Projeto: Kit Digital Express

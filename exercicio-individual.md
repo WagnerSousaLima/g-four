@@ -19,11 +19,13 @@ Voce deve entregar:
 - Lovable: https://lovable.dev/
 - ChatGPT: https://chatgpt.com/
 - Gemini: https://gemini.google.com/
+- GPT Images: ferramenta de geração de imagem no ecossistema OpenAI.
+- Nano Banana: ferramenta de imagem/edição por IA para explorar variações visuais rápidas.
 - Canva: https://www.canva.com/
 - Adobe Express: https://www.adobe.com/express/
-- CapCut: https://www.capcut.com/
 - Google Sites: https://sites.google.com/
 - Gamma: https://gamma.app/
+- Runway: https://www.runwayml.com/
 
 ## Parte 1 - Escolha do caso
 
@@ -148,6 +150,13 @@ Prova:
 Chamada para acao:
 ```
 
+Imagem principal:
+
+```text
+Crie uma imagem principal para este post com GPT Images ou Nano Banana.
+Use o estilo visual do negocio, destaque a promessa principal e mantenha o fundo limpo.
+```
+
 Modelo:
 
 ```text
@@ -162,6 +171,7 @@ Se for criar visual:
 - formato quadrado ou vertical;
 - pouco texto;
 - foto real ou imagem coerente;
+- imagem de destaque gerada por IA, quando fizer sentido;
 - botao/CTA claro;
 - mesma cor e estilo do site.
 
@@ -185,13 +195,13 @@ Estrutura:
 5. Contato:
 ```
 
-## Parte 9 - Roteiro de video curto
+## Parte 9 - Imagem e video curto
 
 Roteiro de 15 segundos:
 
 ```text
 0-3s: dor ou desejo do cliente
-3-7s: produto, servico ou bastidor
+3-7s: imagem principal ou bastidor gerado
 7-10s: beneficio principal
 10-13s: prova rapida
 13-15s: chamada para WhatsApp, site ou direct
@@ -207,6 +217,12 @@ Cena 4:
 Cena 5:
 Texto final na tela:
 ```
+
+Se quiser transformar em video curto:
+
+- use a imagem gerada como capa ou abertura;
+- monte a peça em Canva, Adobe Express ou Runway;
+- adicione legenda curta e CTA final.
 
 ## Parte 10 - Entrega final
 
