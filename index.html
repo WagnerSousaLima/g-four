@@ -122,7 +122,16 @@
     .dark { background: var(--dark); border-color: var(--dark); color: #f8fafc; }
     .dark strong { color: #fff; }
     .dark p, .dark li { color: #d7dee9; }
-    strong { display: block; color: #132033; font-size: 1.02rem; margin-bottom: .42rem; }
+    strong { color: #132033; font-size: 1.02rem; }
+    .card > strong,
+    .panel > strong,
+    .lab > strong,
+    .row > strong,
+    .mock-top > strong,
+    .post-head > strong {
+      display: block;
+      margin-bottom: .42rem;
+    }
     .card p, .panel p, .lab p, li { color: #465466; font-size: .93rem; line-height: 1.32; }
     ul, ol { margin: .56rem 0 0; padding-left: 1.08rem; }
     li + li { margin-top: .28rem; }
@@ -137,7 +146,7 @@
       border-radius: 8px;
       background: rgba(255,253,247,.96);
     }
-    .row strong { margin: 0; }
+    .row > strong { margin: 0; }
     .row p { color: #465466; font-size: .92rem; line-height: 1.32; }
     .mock-site {
       min-height: 360px;
