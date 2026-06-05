@@ -561,6 +561,10 @@ Visual: [cores], [estilo], layout limpo, mobile primeiro, sem exagero.</code>
   </div>
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
+    // Garantir que o último slide receba a classe `tight` no carregamento,
+    // assim a correção funciona mesmo se a versão servida estiver em cache.
+    const last = slides[slides.length - 1];
+    if (last) last.classList.add('tight');
     let current = 0;
     function updateProgress() {
       slides.forEach((slide, index) => {
