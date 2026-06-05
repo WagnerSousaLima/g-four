@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aula 4 | Criacao Digital e Sites para Negocios</title>
+  <style>
+    :root {
+      --bg: #f4f1e8;
+      --ink: #111827;
+      --muted: #5e6878;
+      --paper: #fffdf7;
+      --line: #d8cfbf;
+      --green: #006b5b;
+      --blue: #2258b7;
+      --gold: #bd7414;
+      --red: #b44840;
+      --violet: #6548b2;
+      --mint: #def0e8;
+      --sky: #e4eefc;
+      --sun: #fbead0;
+      --rose: #f6dfda;
+      --lilac: #ebe4fa;
+      --dark: #111827;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(17, 24, 39, .055) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(17, 24, 39, .055) 1px, transparent 1px),
+        var(--bg);
+      background-size: 32px 32px;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+    a { color: var(--blue); font-weight: 900; text-decoration: none; overflow-wrap: anywhere; }
+    a:hover { text-decoration: underline; }
+    .deck { width: 100vw; height: 100vh; position: relative; }
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 2.1rem 3rem 2.45rem;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 1rem;
+      overflow: hidden;
+    }
+    .slide.active { display: grid; }
+    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .eyebrow {
+      color: var(--green);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .55rem;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      max-width: 1120px;
+      font-size: 3.92rem;
+      line-height: .98;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+    h2 {
+      max-width: 1060px;
+      font-size: 2.72rem;
+      line-height: 1.04;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+    .subtitle {
+      max-width: 960px;
+      color: #354257;
+      font-size: 1.12rem;
+      line-height: 1.34;
+      margin-top: .78rem;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 253, 247, .96);
+      color: #263449;
+      font-weight: 900;
+      padding: .52rem .78rem;
+      white-space: nowrap;
+    }
+    .badge::before {
+      content: "";
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    .content { min-height: 0; align-self: center; overflow: hidden; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid.wide-left { grid-template-columns: 1.05fr .95fr; }
+    .flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .72rem; }
+    .card, .panel, .lab, .mock {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 247, .96);
+      box-shadow: 0 12px 30px rgba(17, 24, 39, .08);
+      overflow: hidden;
+    }
+    .card { min-height: 124px; padding: .95rem; }
+    .panel { padding: 1rem; min-height: 100%; }
+    .lab { padding: 1rem; background: #fffaf0; border-color: #d8bd85; }
+    .mint { background: var(--mint); border-color: #b8d9cd; }
+    .sky { background: var(--sky); border-color: #c0d2f1; }
+    .sun { background: var(--sun); border-color: #e8ca92; }
+    .rose { background: var(--rose); border-color: #e6bab3; }
+    .lilac { background: var(--lilac); border-color: #d5c8f0; }
+    .dark { background: var(--dark); border-color: var(--dark); color: #f8fafc; }
+    .dark strong { color: #fff; }
+    .dark p, .dark li { color: #d7dee9; }
+    strong { display: block; color: #132033; font-size: 1.02rem; margin-bottom: .42rem; }
+    .card p, .panel p, .lab p, li { color: #465466; font-size: .93rem; line-height: 1.32; }
+    ul, ol { margin: .56rem 0 0; padding-left: 1.08rem; }
+    li + li { margin-top: .28rem; }
+    .table { display: grid; gap: .52rem; }
+    .row {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: .65rem;
+      align-items: start;
+      padding: .7rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,253,247,.96);
+    }
+    .row strong { margin: 0; }
+    .row p { color: #465466; font-size: .92rem; line-height: 1.32; }
+    .mock-site {
+      min-height: 360px;
+      display: grid;
+      grid-template-rows: 56px 1fr 76px;
+      background: var(--paper);
+    }
+    .mock-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .mock-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); display: inline-block; }
+    .mock-hero { padding: 1.1rem; display: grid; align-content: center; gap: .7rem; }
+    .mock-title { height: 24px; width: 78%; border-radius: 999px; background: #24344c; }
+    .mock-sub { height: 12px; width: 58%; border-radius: 999px; background: #d9d0c2; }
+    .mock-actions { display: flex; gap: .5rem; }
+    .mock-button { height: 36px; width: 132px; border-radius: 8px; background: var(--green); }
+    .mock-ghost { height: 36px; width: 110px; border-radius: 8px; border: 1px solid var(--line); }
+    .mock-bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; padding: .8rem 1rem; border-top: 1px solid var(--line); }
+    .mock-mini { border-radius: 8px; background: #eee5d6; }
+    .post {
+      min-height: 340px;
+      display: grid;
+      grid-template-rows: 52px 1fr 74px;
+      background: var(--paper);
+    }
+    .post-head, .post-foot { padding: .75rem; border-bottom: 1px solid var(--line); }
+    .post-foot { border-bottom: 0; border-top: 1px solid var(--line); color: var(--muted); }
+    .post-visual {
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 2.3rem;
+      font-weight: 950;
+      background: linear-gradient(135deg, #111827 0%, #2258b7 52%, #006b5b 100%);
+    }
+    code { font-family: Consolas, "Courier New", monospace; color: #132033; }
+    .lab code { display: block; white-space: pre-wrap; font-size: .83rem; line-height: 1.31; overflow-wrap: anywhere; }
+    .link-list { display: grid; gap: .58rem; }
+    .link-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 247, .96);
+      padding: .75rem .82rem;
+    }
+    .link-item span { display: block; color: var(--muted); font-size: .84rem; margin-top: .2rem; }
+    .mini-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: #667085;
+      font-size: .82rem;
+    }
+    .progress-wrap { display: flex; align-items: center; gap: .65rem; }
+    .progress { width: 170px; height: 8px; border-radius: 999px; background: #e0d7c8; overflow: hidden; }
+    .progress span { display: block; height: 100%; background: var(--green); }
+    .nav { position: fixed; right: 1rem; bottom: 1rem; display: flex; gap: .45rem; z-index: 50; }
+    button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #bcb2a3;
+      background: rgba(255,253,247,.96);
+      color: #213044;
+      border-radius: 8px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(17,24,39,.12);
+    }
+    @media (max-width: 900px) {
+      body { overflow: auto; overflow-x: hidden; }
+      .deck, .slide { width: 100%; height: auto; min-height: 100vh; }
+      .slide { padding: 1.25rem; overflow: visible; }
+      header { flex-direction: column; }
+      h1 { font-size: 2.04rem; line-height: 1.04; }
+      h2 { font-size: 1.5rem; line-height: 1.1; }
+      .subtitle { font-size: 1rem; }
+      .grid, .grid.two, .grid.four, .grid.wide-left, .flow, .row { grid-template-columns: 1fr; }
+      .slide > *, .card, .panel, .lab, .content { min-width: 0; max-width: 100%; }
+      .nav { display: none; }
+    }
+    @media (max-width: 520px) {
+      header, .content, .mini-footer { max-width: 340px; }
+      h1 { font-size: 1.78rem; }
+      h2 { font-size: 1.12rem; max-width: 320px; }
+      .card p, .panel p, .lab p, li { font-size: .88rem; }
+      .lab code { font-size: .74rem; }
+      .progress { width: 70px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide active">
+      <header>
+        <div>
+          <div class="eyebrow">Informática 5.0 | Aula 4</div>
+          <h1>Criação Digital, Sites e Conteúdo Para Negócios</h1>
+          <p class="subtitle">Uma oficina para criar um kit digital mínimo: página simples, identidade visual, post e roteiro de vídeo para um negócio local ou profissional autônomo.</p>
+        </div>
+        <div class="badge">19h às 21h</div>
+      </header>
+      <div class="content grid">
+        <div class="card mint"><strong>Entrega da aula</strong><p>Briefing, site em Lovable ou rascunho, post, roteiro de vídeo e CTA.</p></div>
+        <div class="card sky"><strong>Ferramentas</strong><p>Lovable, ChatGPT/Gemini, Canva ou Adobe Express, CapCut e Google Drive.</p></div>
+        <div class="card sun"><strong>Critério</strong><p>O material precisa vender uma ideia com clareza, consistência e prova.</p></div>
+      </div>
+      <footer class="mini-footer"><span>Objetivo: transformar criatividade em serviço digital simples e vendável</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Mentalidade de criação</div>
+          <h2>Conteúdo solto não sustenta negócio. Sistema sustenta.</h2>
+        </div>
+        <div class="badge">Estratégia</div>
+      </header>
+      <div class="content flow">
+        <div class="card mint"><strong>Oferta</strong><p>O que o negócio vende, resolve ou promete entregar.</p></div>
+        <div class="card sky"><strong>Público</strong><p>Quem precisa disso, com qual dor, desejo ou urgência.</p></div>
+        <div class="card sun"><strong>Mensagem</strong><p>Frase simples que explica valor sem enrolar.</p></div>
+        <div class="card rose"><strong>Canais</strong><p>Site, Instagram, WhatsApp, Google, apresentação ou PDF.</p></div>
+        <div class="card lilac"><strong>Prova</strong><p>Foto, antes/depois, depoimento, cardápio, projeto, preço ou resultado.</p></div>
+      </div>
+      <footer class="mini-footer"><span>Criar para negócio é organizar decisão: entender, confiar e agir</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Briefing real</div>
+          <h2>Antes de abrir ferramenta, descubra o que precisa ser comunicado</h2>
+        </div>
+        <div class="badge">Diagnóstico</div>
+      </header>
+      <div class="content grid two">
+        <div class="panel">
+          <strong>6 perguntas obrigatórias</strong>
+          <ol>
+            <li>Qual negócio ou serviço?</li>
+            <li>Quem é o cliente ideal?</li>
+            <li>Qual problema resolve?</li>
+            <li>Qual promessa real?</li>
+            <li>Que prova posso mostrar?</li>
+            <li>Qual ação quero gerar?</li>
+          </ol>
+        </div>
+        <div class="panel dark">
+          <strong>Exemplo de resposta</strong>
+          <p>Manicure de bairro para mulheres que querem atendimento rápido e caprichado. Prova: fotos reais de unhas, horários disponíveis e depoimentos. Ação: chamar no WhatsApp para agendar.</p>
+        </div>
+      </div>
+      <footer class="mini-footer"><span>Briefing ruim gera design bonito para problema errado</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Lovable e criadores de sites</div>
+          <h2>Uma página simples deve responder o básico sem depender de explicação</h2>
+        </div>
+        <div class="badge">Site</div>
+      </header>
+      <div class="content grid wide-left">
+        <div class="mock mock-site">
+          <div class="mock-top"><strong><span class="mock-dot"></span> Nome do negócio</strong><span>WhatsApp</span></div>
+          <div class="mock-hero">
+            <div class="mock-title"></div>
+            <div class="mock-sub"></div>
+            <div class="mock-sub" style="width:72%"></div>
+            <div class="mock-actions"><span class="mock-button"></span><span class="mock-ghost"></span></div>
+          </div>
+          <div class="mock-bottom"><span class="mock-mini"></span><span class="mock-mini"></span><span class="mock-mini"></span></div>
+        </div>
+        <div class="table">
+          <div class="row"><strong>1. Ideia</strong><p>Acesse <a href="https://lovable.dev/" target="_blank" rel="noreferrer">lovable.dev</a> e descreva a página com público, oferta, seções e CTA.</p></div>
+          <div class="row"><strong>2. Revisão</strong><p>Confira título, promessa, serviços, provas, contato e versão mobile.</p></div>
+          <div class="row"><strong>3. Iteração</strong><p>Peça ajustes: cores, texto, botões, ordem das seções e clareza da oferta.</p></div>
+          <div class="row"><strong>Alternativas</strong><p>Google Sites, Carrd, Framer, Wix, Gamma ou documento com wireframe.</p></div>
+        </div>
+      </div>
+      <footer class="mini-footer"><span>Site pequeno bom: hero, prova, oferta, contato e chamada para ação</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Prompt para site</div>
+          <h2>Peça o site como uma entrega de negócio, não como uma página bonita</h2>
+        </div>
+        <div class="badge">IA</div>
+      </header>
+      <div class="content lab">
+        <code>Crie uma landing page de uma página para [negócio].
+Público: [cliente ideal].
+Problema que resolve: [dor ou desejo].
+Promessa real: [resultado possível].
+Tom de voz: [simples, acolhedor, premium, técnico, popular].
+
+Seções:
+1. Hero com frase forte e botão para WhatsApp;
+2. Serviços ou produtos principais;
+3. Benefícios claros;
+4. Provas: fotos, depoimentos ou antes/depois;
+5. Como funciona;
+6. Perguntas frequentes;
+7. Chamada final para contato.
+
+Visual: [cores], [estilo], layout limpo, mobile primeiro, sem exagero.</code>
+      </div>
+      <footer class="mini-footer"><span>Depois do primeiro resultado: revise promessa, CTA e excesso de texto</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Design básico</div>
+          <h2>Design profissional é leitura rápida com coerência</h2>
+        </div>
+        <div class="badge">Visual</div>
+      </header>
+      <div class="content grid four">
+        <div class="card mint"><strong>Hierarquia</strong><p>O mais importante aparece primeiro: título, benefício, ação.</p></div>
+        <div class="card sky"><strong>Contraste</strong><p>Texto precisa ser legível; botão precisa parecer botão.</p></div>
+        <div class="card sun"><strong>Alinhamento</strong><p>Elementos organizados passam cuidado e confiança.</p></div>
+        <div class="card rose"><strong>Repetição</strong><p>Cores, fontes e formatos repetidos criam identidade.</p></div>
+      </div>
+      <footer class="mini-footer"><span>Bonito é consequência. Primeiro vem clareza.</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Identidade mínima</div>
+          <h2>Pequenos negócios não precisam de “marca perfeita”; precisam de padrão</h2>
+        </div>
+        <div class="badge">Consistência</div>
+      </header>
+      <div class="content table">
+        <div class="row"><strong>Nome + promessa</strong><p>O nome identifica. A promessa explica por que alguém deveria se importar.</p></div>
+        <div class="row"><strong>2 cores</strong><p>Uma cor principal e uma cor de apoio. Evite arco-íris visual.</p></div>
+        <div class="row"><strong>1 ou 2 fontes</strong><p>Título forte, texto simples. Nada de fonte difícil de ler.</p></div>
+        <div class="row"><strong>Banco visual</strong><p>Fotos reais, produto, pessoa atendendo, bastidor, antes/depois e detalhes.</p></div>
+      </div>
+      <footer class="mini-footer"><span>Identidade boa faz post, site, documento e vídeo parecerem parte do mesmo negócio</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Posts, documentos e apresentações</div>
+          <h2>A mesma mensagem muda de formato, mas não muda de estratégia</h2>
+        </div>
+        <div class="badge">Conteúdo</div>
+      </header>
+      <div class="content grid">
+        <div class="mock post">
+          <div class="post-head"><strong>Post</strong></div>
+          <div class="post-visual">OFERTA</div>
+          <div class="post-foot">Gancho + benefício + prova + CTA</div>
+        </div>
+        <div class="mock post">
+          <div class="post-head"><strong>Apresentação</strong></div>
+          <div class="post-visual">5 SLIDES</div>
+          <div class="post-foot">Problema, solução, oferta, prova, contato</div>
+        </div>
+        <div class="mock post">
+          <div class="post-head"><strong>Documento</strong></div>
+          <div class="post-visual">PDF</div>
+          <div class="post-foot">Cardápio, orçamento, proposta ou portfólio</div>
+        </div>
+      </div>
+      <footer class="mini-footer"><span>Ferramentas: Canva, Adobe Express, Gamma, Google Slides ou Docs</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Vídeo curto para negócio</div>
+          <h2>Vídeo bom tem roteiro antes de efeito</h2>
+        </div>
+        <div class="badge">CapCut</div>
+      </header>
+      <div class="content grid two">
+        <div class="panel">
+          <strong>Roteiro de 15 segundos</strong>
+          <ol>
+            <li>Dor ou desejo do cliente.</li>
+            <li>Mostre produto, serviço ou bastidor.</li>
+            <li>Diga o benefício principal.</li>
+            <li>Mostre prova rápida.</li>
+            <li>Feche com CTA.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <strong>Passo a passo</strong>
+          <ol>
+            <li>Abrir <a href="https://www.capcut.com/" target="_blank" rel="noreferrer">CapCut</a>.</li>
+            <li>Escolher formato vertical.</li>
+            <li>Importar fotos/clipes ou usar template.</li>
+            <li>Adicionar texto e legenda.</li>
+            <li>Exportar ou salvar roteiro se não houver mídia.</li>
+          </ol>
+        </div>
+      </div>
+      <footer class="mini-footer"><span>Legenda não é detalhe: muita gente assiste sem som</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Projeto da aula</div>
+          <h2>Kit Digital Express para um negócio local</h2>
+        </div>
+        <div class="badge">Mão na massa</div>
+      </header>
+      <div class="content flow">
+        <div class="card mint"><strong>1. Briefing</strong><p>Escolha um negócio e responda às 6 perguntas.</p></div>
+        <div class="card sky"><strong>2. Site</strong><p>Crie no Lovable ou monte o prompt/wireframe da página.</p></div>
+        <div class="card sun"><strong>3. Identidade</strong><p>Defina promessa, cores, fonte e estilo de imagem.</p></div>
+        <div class="card rose"><strong>4. Conteúdo</strong><p>Crie um post e um roteiro de vídeo curto.</p></div>
+        <div class="card lilac"><strong>5. Pitch</strong><p>Apresente o kit como serviço vendável.</p></div>
+      </div>
+      <footer class="mini-footer"><span>Entrega pequena, mas com lógica real de atendimento a cliente</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header>
+        <div>
+          <div class="eyebrow">Links e rubrica</div>
+          <h2>Avalie como profissional: clareza, coerência e ação</h2>
+        </div>
+        <div class="badge">Fechamento</div>
+      </header>
+      <div class="content grid wide-left">
+        <div class="link-list">
+          <div class="link-item"><a href="https://lovable.dev/" target="_blank" rel="noreferrer">Lovable</a><span>Criar sites e aplicações com IA a partir de descrição em linguagem natural.</span></div>
+          <div class="link-item"><a href="https://docs.lovable.dev/introduction/welcome" target="_blank" rel="noreferrer">Documentação do Lovable</a><span>Fluxo de ideia, revisão, iteração e deploy.</span></div>
+          <div class="link-item"><a href="https://www.adobe.com/express/" target="_blank" rel="noreferrer">Adobe Express</a><span>Posts, vídeos, documentos, apresentações e ações rápidas com IA.</span></div>
+          <div class="link-item"><a href="https://www.capcut.com/" target="_blank" rel="noreferrer">CapCut</a><span>Vídeos curtos, templates, legendas e edição para redes sociais.</span></div>
+          <div class="link-item"><a href="https://support.google.com/business/answer/7342169?hl=pt-BR" target="_blank" rel="noreferrer">Postagens no Perfil da Empresa Google</a><span>Referência para conteúdo local e presença de negócio.</span></div>
+        </div>
+        <div class="panel">
+          <strong>Rubrica final</strong>
+          <ul>
+            <li>Briefing: entendi público, oferta e ação.</li>
+            <li>Site: tem promessa, prova e CTA.</li>
+            <li>Design: usa padrão visual, não poluição.</li>
+            <li>Conteúdo: post e vídeo têm gancho e benefício.</li>
+            <li>Serviço: dá para vender isso para alguém real.</li>
+          </ul>
+        </div>
+      </div>
+      <footer class="mini-footer"><span>Próximo passo: transformar o kit em portfólio e proposta comercial</span><span></span></footer>
+    </section>
+  </main>
+  <div class="nav">
+    <button id="prev" aria-label="Slide anterior">‹</button>
+    <button id="next" aria-label="Próximo slide">›</button>
+  </div>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let current = 0;
+    function updateProgress() {
+      slides.forEach((slide, index) => {
+        const footer = slide.querySelector('.mini-footer');
+        if (!footer) return;
+        const existing = footer.querySelector('.progress-wrap');
+        if (existing) existing.remove();
+        const wrap = document.createElement('span');
+        wrap.className = 'progress-wrap';
+        const label = document.createElement('span');
+        label.textContent = `${index + 1}/${slides.length}`;
+        const bar = document.createElement('span');
+        bar.className = 'progress';
+        const fill = document.createElement('span');
+        fill.style.width = `${((index + 1) / slides.length) * 100}%`;
+        bar.appendChild(fill);
+        wrap.appendChild(label);
+        wrap.appendChild(bar);
+        footer.appendChild(wrap);
+      });
+    }
+    function showSlide(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      window.location.hash = `slide-${current + 1}`;
+    }
+    document.getElementById('next').addEventListener('click', () => showSlide(current + 1));
+    document.getElementById('prev').addEventListener('click', () => showSlide(current - 1));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'PageDown') showSlide(current + 1);
+      if (event.key === 'ArrowLeft' || event.key === 'PageUp') showSlide(current - 1);
+      if (event.key.toLowerCase() === 'p') window.print();
+      if (event.key.toLowerCase() === 'f') {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+      }
+    });
+    updateProgress();
+    const hashMatch = window.location.hash.match(/slide-(\d+)/);
+    if (hashMatch) showSlide(Number(hashMatch[1]) - 1);
+  </script>
+</body>
+</html>
